@@ -37,6 +37,6 @@ app.set('views', './views');
 app.use('/api', routes);
 app.use('/channelapi', channelroutes);
 app.use('/', views);
-app.listen(5000, () => {
+app.listen(process.env.PORT || 5000, () => {
     console.log(`Server Started at ${5000}`)
 })
