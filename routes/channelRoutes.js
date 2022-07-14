@@ -12,7 +12,7 @@ router.post('/post',  async (req, res) => {
         low: req.body.low ===''? null:req.body.low,
         mid: req.body.mid ===''? null:req.body.mid,
         high: req.body.high ===''? null:req.body.high,
-        category: req.body.category ===''? null:req.body.category
+        category: req.body.category.toLowerCase()
     });
     try {
         const dataToSave = await data.save();
@@ -49,7 +49,7 @@ router.get('/getOne/:id',async (req, res) => {
 //Get by ID Method
 router.get('/getSelected/:id', async (req, res) => {
     try{
-        const data = await Model.find({name: { $regex: '.*' + req.params.id + '.*' }});
+        const data = await Model.find({category: { $regex: '.*' + req.params.id + '.*' }});
         data.length !== 0? res.json(data) : res.json({error: 'Not Found'})
     }
     catch(error){
@@ -76,8 +76,26 @@ router.patch('/update/:id', async (req, res) => {
 })
 
 //Delete by ID Method
-router.delete('/delete/:id', (req, res) => {
-    res.send('Delete by ID API')
+router.delete('/delete/:id', async (req, res) => {
+    try {
+        const id = req.params.id;
+        const data = await Model.findByIdAndDelete(id)
+        const data2 = await Model.find();
+        res.status(200).json(data2)
+    }
+    catch (error) {
+        res.status(400).json({ message: error.message })
+    }
+})
+// Same Category
+router.get('/getSelected/:id', async (req, res) => {
+    try{
+        const data = await Model.find({category: { $regex: '.*' + req.params.id + '.*' }});
+        data.length !== 0? res.json(data) : res.json({ error: 'Not Found'})
+    }
+    catch(error){
+        res.status(500).json({message: error.message})
+    }
 })
 
 module.exports = router;
