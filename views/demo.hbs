@@ -1,0 +1,11 @@
+
+<!DOCTYPE html>
+<html>
+    <body>
+        <ul>
+            {{#each data}}
+            <li>{{this.name}} - {{this.age}} - <a href="users/{{this._id}}">View </a></li>
+            {{/each}}
+        </ul>
+    </body>
+</html>
