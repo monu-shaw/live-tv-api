@@ -13,7 +13,7 @@ const views = require('./views/routes');
 
 
 var corsOptions = {
-    origin: 'http://localhost:3000',
+    origin: 'https://live-tv-react.herokuapp.com',
     methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
     preflightContinue: false,
     optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
