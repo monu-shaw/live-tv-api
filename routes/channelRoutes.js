@@ -12,6 +12,8 @@ router.post('/post',  async (req, res) => {
         low: req.body.low ===''? null:req.body.low,
         mid: req.body.mid ===''? null:req.body.mid,
         high: req.body.high ===''? null:req.body.high,
+        hd: req.body.hd ===''? null:req.body.hd,
+        language: req.body.language.toLowerCase(),
         category: req.body.category.toLowerCase()
     });
     try {

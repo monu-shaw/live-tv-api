@@ -17,6 +17,13 @@ const channelSchema = new mongoose.Schema({
     high: {
         type: String,
     },
+    hd: {
+        type: String,
+    },
+    language: {
+        type: String,
+        required: true
+    },
     category: {
         type: String,
         required: true
